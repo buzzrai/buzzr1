@@ -1,0 +1,29 @@
+from flask import Flask, request
+from twilio.twiml.voice_response import VoiceResponse
+from twilio.twiml.messaging_response import MessagingResponse
+from twilio.rest import Client
+
+app = Flask(__name__)
+
+# Configure your Twilio account credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+client = Client(account_sid, auth_token)
+
+# Function to handle incoming voice calls
+@app.route('/answer_call', methods=['POST'])
+def answer_call():
+    # Create a TwiML response
+    response = VoiceResponse()
+    
+    # Play digits
+    response.play(digits='1234')
+    
+    # Send a text message to a number of your choice
+    message = client.messages.create(
+        body='A call was received and digits were played.',
+        from_='YOUR_TWILIO_PHONE_NUMBER',
+        to='YOUR_DESTINATION_PHONE_NUMBER'
+    )
+    
+    return str(response)
