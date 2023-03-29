@@ -17,11 +17,11 @@ def answer_call():
     response = VoiceResponse()
     
     # Play digits
-    response.play(digits='1234')
+    response.play(digits='9wwwww9wwwww9wwwww9www')
     
     # Send a text message to a number of your choice
     message = client.messages.create(
-        body='A call was received and digits were played.',
+        body='Free message from Buzzr: A guest has dialed your buzz code and has been granted access. Thank you for using Buzzr - built with ♥',
         from_='YOUR_TWILIO_PHONE_NUMBER',
         to='YOUR_DESTINATION_PHONE_NUMBER'
     )
